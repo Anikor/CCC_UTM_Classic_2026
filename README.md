@@ -65,6 +65,12 @@ Every tick offers 4<sup>6</sup> = 4,096 possible instruction lines, and a progra
 - **Closer to the real rules.** Let the search rebuild destroyed cells and keep temporary matter next to the pattern, and rerank by a lower bound on the remaining ticks (`gpu6r.py`, `gpu6a.py`, `gpu6L.py`).
 - **Never lose a gain.** Every candidate is checked by an exact simulator, the shortest valid program per pattern is merged (`nano6.py`, `merge6.py`), and a loop submitted every file that beat the board until the final seconds of the contest.
 
+In the first 21 minutes on the board the method changed three times, from a greedy builder to beam search; after that the search only got wider, smarter and more parallel.
+
+<p align="center">
+  <img src="assets/timeline.svg" width="100%" alt="Step chart, log scale, of the team's level 6 board total over the whole contest: 197,821 at 16:08 (greedy, two beams per cell), 89,619 at 16:13 (row sweeps), 64,427 at 16:18 (two rows per sweep), 19,995 at 16:29 (C++ beam search, W = 64), 17,437 at 17:50 (relaxed stray rule, W = 256), 15,432 at 18:54 (GPU search up to W = 131,072, tail re-search) and 14,566 at 19:56 (post-optimisation and merges to the end).">
+</p>
+
 <p align="center">
   <img src="assets/score.svg" width="100%" alt="Step chart of the team's level 6 board total during the last 72 minutes: 16,538 at 18:47, 14,566 at the end of the contest at 20:00.">
 </p>
@@ -76,43 +82,7 @@ Every tick offers 4<sup>6</sup> = 4,096 possible instruction lines, and a progra
 | `4-enormous` | 5,076 | 4,096 | −980 |
 | **Total** | **16,538** | **14,566** | **−1,972 (−11.9%)** |
 
-## Score timeline: the whole contest
-
-The board total for level 6 from the first submission to the last, every time it changed by at least 250 lines (full list of all 82 changes in [`stats/timeline_full.csv`](stats/timeline_full.csv)). The first hour is the algorithm changing (greedy cell-by-cell → row sweeps → two-row sweeps → tick-level beam search); after that the beam only gets wider, more diverse and more parallel, and the per-case merge keeps the best program per pattern from every run.
-
-| Time | medium | large | enormous | Total |
-|:-:|--:|--:|--:|--:|
-| 16:08 | 68,898 | 64,705 | 64,218 | **197,821** |
-| 16:13 | 32,015 | 29,551 | 28,053 | **89,619** |
-| 16:18 | 25,482 | 21,366 | 17,579 | **64,427** |
-| 16:27 | 7,095 | 6,788 | 17,579 | **31,462** |
-| 16:29 | 7,095 | 6,788 | 6,112 | **19,995** |
-| 16:32 | 6,742 | 6,788 | 6,112 | **19,642** |
-| 16:38 | 6,742 | 6,255 | 6,112 | **19,109** |
-| 16:55 | 6,290 | 6,255 | 6,112 | **18,657** |
-| 17:46 | 6,167 | 6,243 | 5,990 | **18,400** |
-| 17:50 | 6,167 | 5,749 | 5,521 | **17,437** |
-| 18:14 | 6,167 | 5,599 | 5,286 | **17,052** |
-| 18:44 | 6,105 | 5,408 | 5,151 | **16,664** |
-| 18:51 | 6,023 | 5,313 | 4,890 | **16,226** |
-| 18:54 | 5,950 | 5,162 | 4,858 | **15,970** |
-| 18:54 | 5,933 | 5,129 | 4,370 | **15,432** |
-| 18:57 | 5,898 | 4,855 | 4,363 | **15,116** |
-| 19:08 | 5,879 | 4,732 | 4,242 | **14,853** |
-| 19:29 | 5,807 | 4,674 | 4,119 | **14,600** |
-| 19:56 | 5,806 | 4,664 | 4,096 | **14,566** |
-
-| Stage | Method | medium | large | enormous |
-|:--|:--|--:|--:|--:|
-| 16:08 | greedy: two beams per cell | 68,898 | 64,705 | 64,218 |
-| 16:13 | one fixed beam + one sweeping beam per row | 32,015 | 29,551 | 28,053 |
-| 16:18 | two rows per sweep, twin emitter across gaps | 25,482 | 21,366 | 17,579 |
-| 16:29 | C++ beam search, W=64 | 7,095 | 6,788 | 6,112 |
-| 17:50 | + relaxed stray rule, W=256 | 6,167 | 5,749 | 5,521 |
-| 18:54 | + GPU search (W up to 131,072), pattern-only dedupe, tail re-search | 5,933 | 5,129 | 4,370 |
-| 19:56 | + post-optimisation and merges until the last minute | 5,806 | 4,664 | 4,096 |
-
-Every candidate file produced during the contest, scored with the exact simulator, is listed in [`stats/stats.md`](stats/stats.md); the final programs are the per-pattern best over all of them.
+Every candidate file from the contest, scored with the exact simulator, is in [`stats/stats.md`](stats/stats.md); every board change, per input, is in [`stats/timeline_full.csv`](stats/timeline_full.csv).
 
 ## Repository structure
 
@@ -132,6 +102,7 @@ CCC.zip
         ├── agents/      extra solvers: CPU tail, heuristic, cycle search, post-optimizer
         └── win_scripts/ merge and auto-submit loop
 assets/                  README visuals, rendered from our real programs and submit log
+stats/                   every candidate file scored, full board timeline
 ```
 
 ## Run it yourself
