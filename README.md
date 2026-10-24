@@ -76,6 +76,44 @@ Every tick offers 4<sup>6</sup> = 4,096 possible instruction lines, and a progra
 | `4-enormous` | 5,076 | 4,096 | −980 |
 | **Total** | **16,538** | **14,566** | **−1,972 (−11.9%)** |
 
+## Score timeline: the whole contest
+
+The board total for level 6 from the first submission to the last, every time it changed by at least 250 lines (full list of all 82 changes in [`stats/timeline_full.csv`](stats/timeline_full.csv)). The first hour is the algorithm changing (greedy cell-by-cell → row sweeps → two-row sweeps → tick-level beam search); after that the beam only gets wider, more diverse and more parallel, and the per-case merge keeps the best program per pattern from every run.
+
+| Time | medium | large | enormous | Total |
+|:-:|--:|--:|--:|--:|
+| 16:08 | 68,898 | 64,705 | 64,218 | **197,821** |
+| 16:13 | 32,015 | 29,551 | 28,053 | **89,619** |
+| 16:18 | 25,482 | 21,366 | 17,579 | **64,427** |
+| 16:27 | 7,095 | 6,788 | 17,579 | **31,462** |
+| 16:29 | 7,095 | 6,788 | 6,112 | **19,995** |
+| 16:32 | 6,742 | 6,788 | 6,112 | **19,642** |
+| 16:38 | 6,742 | 6,255 | 6,112 | **19,109** |
+| 16:55 | 6,290 | 6,255 | 6,112 | **18,657** |
+| 17:46 | 6,167 | 6,243 | 5,990 | **18,400** |
+| 17:50 | 6,167 | 5,749 | 5,521 | **17,437** |
+| 18:14 | 6,167 | 5,599 | 5,286 | **17,052** |
+| 18:44 | 6,105 | 5,408 | 5,151 | **16,664** |
+| 18:51 | 6,023 | 5,313 | 4,890 | **16,226** |
+| 18:54 | 5,950 | 5,162 | 4,858 | **15,970** |
+| 18:54 | 5,933 | 5,129 | 4,370 | **15,432** |
+| 18:57 | 5,898 | 4,855 | 4,363 | **15,116** |
+| 19:08 | 5,879 | 4,732 | 4,242 | **14,853** |
+| 19:29 | 5,807 | 4,674 | 4,119 | **14,600** |
+| 19:56 | 5,806 | 4,664 | 4,096 | **14,566** |
+
+| Stage | Method | medium | large | enormous |
+|:--|:--|--:|--:|--:|
+| 16:08 | greedy: two beams per cell | 68,898 | 64,705 | 64,218 |
+| 16:13 | one fixed beam + one sweeping beam per row | 32,015 | 29,551 | 28,053 |
+| 16:18 | two rows per sweep, twin emitter across gaps | 25,482 | 21,366 | 17,579 |
+| 16:29 | C++ beam search, W=64 | 7,095 | 6,788 | 6,112 |
+| 17:50 | + relaxed stray rule, W=256 | 6,167 | 5,749 | 5,521 |
+| 18:54 | + GPU search (W up to 131,072), pattern-only dedupe, tail re-search | 5,933 | 5,129 | 4,370 |
+| 19:56 | + post-optimisation and merges until the last minute | 5,806 | 4,664 | 4,096 |
+
+Every candidate file produced during the contest, scored with the exact simulator, is listed in [`stats/stats.md`](stats/stats.md); the final programs are the per-pattern best over all of them.
+
 ## Repository structure
 
 ```text
