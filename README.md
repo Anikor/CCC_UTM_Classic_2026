@@ -27,7 +27,7 @@ Six laser emitters ride on a rail around a hexagonal board. On every tick each e
 ## Results
 
 We solved all **6 levels** and finished with:
-- 🥇 **UTM (local): 1st place**
+- 🥇 **Local Moldova (UTM): 1st place**
 - 🌍 **Global: 14th place**
 - ⚡ **Level 6 (optimization): 14,566** program lines in total, lower is better
 
