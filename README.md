@@ -55,13 +55,9 @@ Levels 1–5 are solved in C++ (`level_N/Solution/level_N.cpp`). Level 6 lives i
 
 Every tick offers 4<sup>6</sup> = 4,096 possible instruction lines, and a program needs a few dozen of them, so we treated level 6 as a search problem and ran it on both the CPU and the GPU.
 
-```mermaid
-flowchart LR
-    A["C++ beam search<br/>4,096 moves per tick"] --> B["GPU beam search<br/>CUDA, width up to 131,072"]
-    B --> C["Tail re-search<br/>from the best programs"]
-    C --> D["Exact validator<br/>best program per pattern"]
-    D --> E["Auto-submit loop<br/>contest API"]
-```
+<p align="center">
+  <img src="assets/pipeline.svg" width="100%" alt="Level 6 pipeline: C++ beam search (4,096 moves per tick), then GPU beam search (CUDA, width up to 131,072), then tail re-search from the best programs, then an exact validator keeping the best program per pattern, then the auto-submit loop to the contest API.">
+</p>
 
 - **Beam search.** A state is the emitter positions, which lasers are on, the matter on the board and the copies collected so far. States are deduplicated on the pattern cells only, which keeps the beam diverse (`bs6s.cpp`, `bs6p.cpp`).
 - **On the GPU.** The same search as CUDA kernels compiled at runtime through CuPy, with beam widths up to 131,072 (`gpu6.py`, `gpu6snap.py`).

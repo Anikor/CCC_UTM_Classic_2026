@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="190" viewBox="0 0 880 190" role="img" aria-labelledby="t d">
+  <title id="t">Level 6 pipeline</title>
+  <desc id="d">Five steps from left to right: 1. C++ beam search over 4,096 moves per tick. 2. GPU beam search in CUDA, beam width up to 131,072. 3. Tail re-search from the best programs. 4. Exact validator that keeps the best program per pattern. 5. Auto-submit loop to the contest API.</desc>
+  <style>text{font-family:'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif}.c{font-size:12px;font-weight:700;letter-spacing:2.4px;fill:#8792B8}.n{font-size:12px;font-weight:700;fill:#E8ECF8}.h{font-size:14px;font-weight:600;fill:#E8ECF8}.s{font-size:12.5px;fill:#AAB4CF}</style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A0F1E"/><stop offset="1" stop-color="#121B38"/></linearGradient>
+  </defs>
+  <rect x="0.5" y="0.5" width="879" height="189" rx="18" fill="url(#bg)" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="32" y="40" class="c">LEVEL 6 PIPELINE</text>
+
+  <!-- boxes: 5 x 148 wide, 20 px gaps, centered in 880 -->
+  <g fill="#141D3A" stroke="#2A3866" stroke-width="1">
+    <rect x="30" y="64" width="148" height="96" rx="12"/>
+    <rect x="198" y="64" width="148" height="96" rx="12"/>
+    <rect x="366" y="64" width="148" height="96" rx="12"/>
+    <rect x="534" y="64" width="148" height="96" rx="12"/>
+    <rect x="702" y="64" width="148" height="96" rx="12" stroke="#22D3EE" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- step badges -->
+  <g fill="#22D3EE" fill-opacity="0.15" stroke="#22D3EE" stroke-width="1">
+    <circle cx="52" cy="83" r="11"/>
+    <circle cx="220" cy="83" r="11"/>
+    <circle cx="388" cy="83" r="11"/>
+    <circle cx="556" cy="83" r="11"/>
+    <circle cx="724" cy="83" r="11"/>
+  </g>
+  <text x="52" y="87.2" class="n" text-anchor="middle">1</text>
+  <text x="220" y="87.2" class="n" text-anchor="middle">2</text>
+  <text x="388" y="87.2" class="n" text-anchor="middle">3</text>
+  <text x="556" y="87.2" class="n" text-anchor="middle">4</text>
+  <text x="724" y="87.2" class="n" text-anchor="middle">5</text>
+
+  <!-- 1 -->
+  <text x="44" y="117" class="h">C++ beam search</text>
+  <text x="44" y="135" class="s">4,096 moves</text>
+  <text x="44" y="150" class="s">per tick</text>
+  <!-- 2 -->
+  <text x="212" y="117" class="h">GPU beam search</text>
+  <text x="212" y="135" class="s">CUDA, width</text>
+  <text x="212" y="150" class="s">up to 131,072</text>
+  <!-- 3 -->
+  <text x="380" y="117" class="h">Tail re-search</text>
+  <text x="380" y="135" class="s">from the best</text>
+  <text x="380" y="150" class="s">programs</text>
+  <!-- 4 -->
+  <text x="548" y="117" class="h">Exact validator</text>
+  <text x="548" y="135" class="s">best program</text>
+  <text x="548" y="150" class="s">per pattern</text>
+  <!-- 5: output -->
+  <text x="716" y="117" class="h">Auto-submit loop</text>
+  <text x="716" y="135" class="s">to the</text>
+  <text x="716" y="150" class="s">contest API</text>
+
+  <!-- chevrons centered in the 20 px gaps -->
+  <g fill="none" stroke="#8792B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M185 106L191 112L185 118"/>
+    <path d="M353 106L359 112L353 118"/>
+    <path d="M521 106L527 112L521 118"/>
+    <path d="M689 106L695 112L689 118"/>
+  </g>
+</svg>
